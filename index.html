@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Etch-a-Sketch</title>
+</head>
+<body>
+  <div class="grid-container">
+  </div>
+  <button class="btn" onclick="resetGrid()">Add New Grid</button>
+  <script>
+
+    function generateGrid(){
+   
+     const container = document.querySelector(".grid-container");
+
+    for (let i = 0; i < 16; i++) {
+      for (let j = 0; j < 16; j++) {
+        const gridElement = document.createElement("div");
+        gridElement.classList.add("grid");
+        container.appendChild(gridElement);
+      }
+    }
+}
+
+    function resetGrid() {
+      const container = document.querySelector(".grid-container");
+      const gridSize = prompt("Enter the number of squares per side (maximum 100):");
+      const parsedSize = parseInt(gridSize);
+
+      if (!isNaN(parsedSize) && parsedSize > 0 && parsedSize <= 100) {
+    
+        while (container.firstChild) {
+          container.removeChild(container.firstChild);
+        }
+
+    
+        container.style.width = `${parsedSize * 41 - 1}px`;
+
+
+        for (let i = 0; i < parsedSize; i++) {
+          for (let j = 0; j < parsedSize; j++) {
+            const gridElement = document.createElement("div");
+            gridElement.classList.add("grid");
+            // console.log(gridElement)
+            container.appendChild(gridElement);
+          }
+        }
+      } else {
+        alert("Invalid input! Please enter a number between 1 and 100.");
+      }
+    }
+
+    generateGrid();
+
+  </script>
+    
+</body>
+</html>
